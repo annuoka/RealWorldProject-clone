@@ -32,8 +32,6 @@ export const appRoutes: Routes = [
   {
     path: 'articles/:slug',
     loadChildren: () =>
-      import('./article/components/article/article.routes').then(
-        (m) => m.routes,
-      ),
+      import('./article/article.routes').then((m) => m.routes),
   },
 ];

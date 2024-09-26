@@ -3,18 +3,18 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {combineLatest, filter, map, Observable, startWith} from 'rxjs';
-import {selectCurrentUser} from '../../../auth/store/auth.reducers';
-import {ErrorMessageComponent} from '../../../shared/error-message/error-message.component';
-import {LoadingComponent} from '../../../shared/loading/loading.component';
-import {Article} from '../../../shared/models/article.interface';
-import {CurrentUser} from '../../../shared/models/currentUser.interface';
-import {TagListComponent} from '../../../shared/tags/tag-list/tag-list.component';
-import {articleActions} from '../../store/article.actions';
+import {selectCurrentUser} from '../../auth/store/auth.reducers';
+import {ErrorMessageComponent} from '../../shared/error-message/error-message.component';
+import {LoadingComponent} from '../../shared/loading/loading.component';
+import {Article} from '../../shared/models/article.interface';
+import {CurrentUser} from '../../shared/models/currentUser.interface';
+import {TagListComponent} from '../../shared/tags/tag-list/tag-list.component';
+import {articleActions} from '../store/article.actions';
 import {
   selectArticleData,
   selectError,
   selectIsLoading,
-} from '../../store/article.reducers';
+} from '../store/article.reducers';
 
 @Component({
   selector: 'app-article',
