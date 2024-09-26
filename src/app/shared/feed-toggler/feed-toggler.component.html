@@ -1,0 +1,33 @@
+<div class="feed-toggle">
+  <ul class="nav nav-pills outline-active">
+    @if (currentUser$ | async; as currentUser) {
+      <li class="nav-item">
+        <a routerLink="/feed" routerLinkActive="active" class="nav-link">
+          Your Feed
+        </a>
+      </li>
+    }
+    <li class="nav-item">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{exact: true}"
+        queryParamsHandling="merge"
+      >
+        Global Feed
+      </a>
+    </li>
+    @if (tagName) {
+      <li class="nav-item">
+        <a
+          routerLink="['tags', tagName]"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          <i class="ion-pound"></i> {{ tagName }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>

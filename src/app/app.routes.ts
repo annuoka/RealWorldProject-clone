@@ -1,3 +1,39 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
-export const routes: Routes = [];
+export const appRoutes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./global-feed/global-feed.routes').then((m) => m.routes),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./auth/auth.routes').then((m) => m.registerRoutes),
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),
+  },
+  {
+    path: 'feed',
+    loadChildren: () =>
+      import('./your-feed/your-feed.routes').then((m) => m.routes),
+  },
+  {
+    path: 'tags/:slug',
+    loadChildren: () => import('./tag-feed/tags.routes').then((m) => m.routes),
+  },
+  {
+    path: 'articles/new',
+    loadChildren: () =>
+      import('./create-article/create-article.routes').then((m) => m.routes),
+  },
+  {
+    path: 'articles/:slug',
+    loadChildren: () =>
+      import('./article/components/article/article.routes').then(
+        (m) => m.routes,
+      ),
+  },
+];

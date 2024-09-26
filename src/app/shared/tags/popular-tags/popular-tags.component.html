@@ -1,0 +1,16 @@
+@if (data$ | async; as data) {
+  <h4>Popular Tags</h4>
+  @if (data.isLoading) {
+    <app-loading></app-loading>
+  }
+  @if (data.error) {
+    <app-error-message [message]="data.error"></app-error-message>
+  }
+  @if (data.tags) {
+    @for (tag of data.tags; track tag) {
+      <a class="tag-default tag-pill tag-outline" [routerLink]="['/tags', tag]">
+        {{ tag }}
+      </a>
+    }
+  }
+}
