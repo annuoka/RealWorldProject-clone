@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth.service';
 import {authActions} from '../../store/auth.actions';
 import {LoginComponent} from './login.component';
 

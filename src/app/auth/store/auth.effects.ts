@@ -6,7 +6,7 @@ import {Store} from '@ngrx/store';
 import {catchError, map, of, switchMap, tap} from 'rxjs';
 import {CurrentUser} from '../../shared/models/currentUser.interface';
 import {PersistenceService} from '../../shared/services/persistence.service';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../services/auth.service';
 import {authActions} from './auth.actions';
 
 export const registerEffect = createEffect(
@@ -122,5 +122,51 @@ export const getCurrentUserEffect = createEffect(
   },
   {
     functional: true,
+  },
+);
+
+export const updateCurrentUserEffect = createEffect(
+  (
+    actions$: Actions = inject(Actions),
+    authService: AuthService = inject(AuthService),
+  ) => {
+    return actions$.pipe(
+      ofType(authActions.updateCurrentUser),
+      switchMap(({currentUserRequest}) => {
+        return authService.updateCurrentUser(currentUserRequest).pipe(
+          map((currentUser: CurrentUser) => {
+            return authActions.updateCurrentUserSuccess({currentUser});
+          }),
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(
+              authActions.updateCurrentUserFailure(errorResponse.error.errors),
+            );
+          }),
+        );
+      }),
+    );
+  },
+  {
+    functional: true,
+  },
+);
+
+export const logoutEffect = createEffect(
+  (
+    actions$: Actions = inject(Actions),
+    persistenceService: PersistenceService = inject(PersistenceService),
+    router: Router = inject(Router),
+  ) => {
+    return actions$.pipe(
+      ofType(authActions.logout),
+      tap(() => {
+        persistenceService.set('accessToken', '');
+        router.navigateByUrl('/');
+      }),
+    );
+  },
+  {
+    functional: true,
+    dispatch: false,
   },
 );

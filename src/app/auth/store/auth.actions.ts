@@ -1,6 +1,9 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store';
 import {BackendErrors} from '../../shared/models/backendErrors.interface';
-import {CurrentUser} from '../../shared/models/currentUser.interface';
+import {
+  CurrentUser,
+  CurrentUserRequest,
+} from '../../shared/models/currentUser.interface';
 import {LoginRequest, RegisterRequest} from '../models/auth.models';
 
 export const authActions = createActionGroup({
@@ -17,5 +20,11 @@ export const authActions = createActionGroup({
     'Get Current User': emptyProps(),
     'Get Current User Success': props<{currentUser: CurrentUser}>(),
     'Get Current User Failure': emptyProps(),
+
+    'Update Current User': props<{currentUserRequest: CurrentUserRequest}>(),
+    'Update Current User Success': props<{currentUser: CurrentUser}>(),
+    'Update Current User Failure': props<{errors: BackendErrors}>(),
+
+    Logout: emptyProps(),
   },
 });

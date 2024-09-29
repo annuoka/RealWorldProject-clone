@@ -12,7 +12,7 @@ import {Store} from '@ngrx/store';
 import {combineLatest, Observable, of} from 'rxjs';
 import {BackendErrorMessagesComponent} from '../../../backend-error-messages/backend-error-messages.component';
 import {BackendErrors} from '../../../shared/models/backendErrors.interface';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth.service';
 import {RegisterRequest} from '../../models/auth.models';
 import {authActions} from '../../store/auth.actions';
 import {
