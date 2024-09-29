@@ -28,13 +28,13 @@ export class CreateArticleComponent {
   };
 
   data$: Observable<{
-    error: BackendErrors | null;
+    errors: BackendErrors | null;
     isSubmitting: boolean;
   }> = new Observable();
 
   constructor(private _store: Store) {
     this.data$ = combineLatest({
-      error: this._store.select(selectValidationErrors),
+      errors: this._store.select(selectValidationErrors),
       isSubmitting: this._store.select(selectIsSubmitting),
     });
   }

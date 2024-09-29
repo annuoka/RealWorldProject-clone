@@ -1,7 +1,8 @@
-@if (data$ | async; as $data) {
+@if (data$ | async; as data) {
   <app-article-form
     [initialValues]="initialValues"
     [isSubmitting]="false"
+    [errors]="data.errors"
     (articleSubmit)="onSubmit($event)"
   ></app-article-form>
 }

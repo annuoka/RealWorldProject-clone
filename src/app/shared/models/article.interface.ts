@@ -16,7 +16,7 @@ export interface ArticleResponse {
 export interface Article {
   title: string;
   description: string;
-  body: string;
+  body?: string;
   tagList: PopularTag[];
   createdAt: string;
   updatedAt: string;

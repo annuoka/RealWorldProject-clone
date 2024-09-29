@@ -44,12 +44,6 @@ export class ArticleComponent implements OnInit {
     private _route: ActivatedRoute,
   ) {
     this.slug = this._route.snapshot.paramMap.get('slug') || '';
-    this.data$ = combineLatest({
-      isLoading: this._store.select(selectIsLoading),
-      error: this._store.select(selectError),
-      article: this._store.select(selectArticleData),
-      isAuthor: this.isAuthor$.pipe(startWith(false)),
-    });
 
     this.isAuthor$ = combineLatest({
       article: this._store.select(selectArticleData),
@@ -70,6 +64,13 @@ export class ArticleComponent implements OnInit {
         );
       }),
     );
+
+    this.data$ = combineLatest({
+      isLoading: this._store.select(selectIsLoading),
+      error: this._store.select(selectError),
+      article: this._store.select(selectArticleData),
+      isAuthor: this.isAuthor$,
+    });
   }
 
   ngOnInit() {

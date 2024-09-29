@@ -14,24 +14,23 @@
             <span class="date">{{
               data.article?.createdAt | date: 'medium'
             }}</span>
-
-            @if (data.isAuthor) {
-              <span>
-                <a
-                  class="btn btn-outline-secondary btn-sm"
-                  [routerLink]="['/editor', data.article?.slug]"
-                >
-                  <i class="ion-edit"></i> Edit Article
-                </a>
-              </span>
-              <button
-                class="btn btn-outline-danger btn-sm"
-                (click)="deleteArticle()"
-              >
-                Delete Article
-              </button>
-            }
           </div>
+          @if (data.isAuthor) {
+            <span>
+              <a
+                [routerLink]="['/articles', data.article?.slug, 'edit']"
+                class="btn btn-outline-secondary btn-sm"
+              >
+                <i class="ion-edit"></i> Edit Article
+              </a>
+            </span>
+            <button
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteArticle()"
+            >
+              Delete Article
+            </button>
+          }
         </div>
       </div>
     </div>

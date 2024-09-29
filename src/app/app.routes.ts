@@ -2,11 +2,6 @@ import {Routes} from '@angular/router';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./global-feed/global-feed.routes').then((m) => m.routes),
-  },
-  {
     path: 'register',
     loadChildren: () =>
       import('./auth/auth.routes').then((m) => m.registerRoutes),
@@ -33,5 +28,15 @@ export const appRoutes: Routes = [
     path: 'articles/:slug',
     loadChildren: () =>
       import('./article/article.routes').then((m) => m.routes),
+  },
+  {
+    path: 'articles/:slug/edit',
+    loadChildren: () =>
+      import('./update-article/update-article.routes').then((m) => m.routes),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./global-feed/global-feed.routes').then((m) => m.routes),
   },
 ];
