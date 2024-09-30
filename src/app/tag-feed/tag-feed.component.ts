@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {BannerComponent} from '../shared/banner/banner.component';
-import {FeedTogglerComponent} from '../shared/feed-toggler/feed-toggler.component';
-import {FeedComponent} from '../shared/feed/feed.component';
-import {PopularTagsComponent} from '../shared/tags/popular-tags/popular-tags.component';
+import {BannerComponent} from '../shared/components/banner/banner.component';
+import {FeedTogglerComponent} from '../shared/components/feed-toggler/feed-toggler.component';
+import {FeedComponent} from '../shared/components/feed/components/feed.component';
+import {PopularTagsComponent} from '../shared/components/tags/popular-tags/popular-tags.component';
 
 @Component({
   selector: 'app-tag-feed',

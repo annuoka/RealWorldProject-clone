@@ -1,0 +1,8 @@
+<button
+  (click)="handleLike()"
+  class="btn btn-sm"
+  [class.btn-primary]="isFavorited"
+  [class.btn-outline-primary]="!isFavorited"
+>
+  <i class="ion-heart"></i> &nbsp; <span>{{ favoritesCount }}</span>
+</button>

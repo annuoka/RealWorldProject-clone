@@ -16,7 +16,7 @@ export const getArticleEffect = createEffect(
     return actions$.pipe(
       ofType(updateArticleActions.getArticle),
       switchMap(({slug}) => {
-        return articleService.getArticle(slug).pipe(
+        return articleService.getUserProfile(slug).pipe(
           map((article: Article) => {
             return updateArticleActions.getArticleSuccess({article});
           }),

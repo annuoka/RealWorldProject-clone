@@ -2,18 +2,18 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {ArticleResponse} from '../models/article.interface';
+import {GetUserProfileResponse} from '../models/user-profile.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SharedArticleService {
+export class UserProfileService {
   constructor(private _http: HttpClient) {}
 
   getUserProfile(slug: string) {
-    const fullUrl = `${environment.baseUrl}/articles/${slug}`;
+    const url = `${environment.baseUrl}/profiles/${slug}`;
     return this._http
-      .get<ArticleResponse>(fullUrl)
-      .pipe(map((response) => response.article));
+      .get<GetUserProfileResponse>(url)
+      .pipe(map((response) => response.profile));
   }
 }

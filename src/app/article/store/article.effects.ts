@@ -2,7 +2,6 @@ import {inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {catchError, map, of, switchMap, tap} from 'rxjs';
-import {authActions} from '../../auth/store/auth.actions';
 import {Article} from '../../shared/models/article.interface';
 import {SharedArticleService} from '../../shared/services/shared-article.service';
 import {ArticleService} from '../services/article.service';
@@ -16,7 +15,7 @@ export const getArticleEffect = createEffect(
     return actions$.pipe(
       ofType(articleActions.getArticle),
       switchMap(({slug}) => {
-        return articleService.getArticle(slug).pipe(
+        return articleService.getUserProfile(slug).pipe(
           map((article: Article) => {
             return articleActions.getArticleSuccess({article});
           }),

@@ -1,0 +1,67 @@
+@if (data$ | async; as data) {
+  <div class="profile-page">
+    <div class="user-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-10 offset-md-1">
+            <img [src]="data.userProfile?.image" class="user-img" />
+            <h4>{{ data.userProfile?.username }}</h4>
+            <p>{{ data.userProfile?.bio }}</p>
+            @if (!data.isCurrentUserProfile) {
+              <button class="btn btn-sm btn-outline-secondary action-btn">
+                <i class="ion-plus-round"></i>
+                &nbsp; Follow {{ data.userProfile?.username }}
+              </button>
+              <button class="btn btn-sm btn-outline-secondary action-btn">
+                <i class="ion-plus-round"></i>
+                &nbsp; Unfollow {{ data.userProfile?.username }}
+              </button>
+            }
+            @if (data.isCurrentUserProfile) {
+              <a
+                class="btn btn-sm btn-outline-secondary action-btn"
+                [routerLink]="'/settings'"
+                >Edit Profile Settings
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 offset-md-1">
+          <div class="articles-toggle">
+            <ul class="nav nav-pills outline-active">
+              <li class="nav-item">
+                <a
+                  [routerLink]="['/profiles', data.userProfile?.username]"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link"
+                >
+                  My Posts
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  [routerLink]="[
+                    '/profiles',
+                    data.userProfile?.username,
+                    'favorites',
+                  ]"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link"
+                >
+                  Favorite Posts
+                </a>
+              </li>
+            </ul>
+          </div>
+          <app-feed [apiUrl]="getApiUrl()"></app-feed>
+        </div>
+      </div>
+    </div>
+  </div>
+}
